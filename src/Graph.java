@@ -197,6 +197,7 @@ class gVert{
 		FlowOut = new gVert[n];
 	}
 	
+	
 	/**
 	 * 
 	 * @param a

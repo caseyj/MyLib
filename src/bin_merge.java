@@ -8,6 +8,7 @@
  */
 public class bin_merge {
 
+	
 	/**
 	 * 
 	 * @param sortable
