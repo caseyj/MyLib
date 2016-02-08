@@ -9,24 +9,30 @@
 
 
 args<-commandArgs(TRUE)
-
+#if not enough args are offered this terminates and informs the user of the proper usage
 if(length(args) <4){
 
 	print("Must be called: ")
 	stop(">:rscript Otsu.r [dataFile] [binSize integer] [user defined min] [user defined max]")
 }
 
+#a few variables in order to properly take in and utilize the arguments
 fileName <- args[1]
+#the following variables must be numeric
 binSize <-as.numeric(args[2])
 min<- as.numeric(args[3])
 max<- as.numeric(args[4])
 
+#c1 takes in the csv and holds the data in memory
 c1<-read.csv(file = fileName, header= FALSE, sep=".", stringsAsFactors=FALSE)
+#c2 takes the target data into numeric form for further processing
 c2<-as.numeric(c1$V1)
+#if a missing value exists, this will omit the value from the set
 c2<-na.omit(c2)
-c2
+#this allows for the data to be binned by the size the user selects between the selected minimum and maximum
+#for a bin size of 2 and a min of 38 and a max of 80 this will result in 
+#[38-40) [40-42) [42-44)...[78-80)
 c3<-cut(c2, breaks = seq(min,max, by=binSize), right= FALSE)
-hist(c2, breaks = seq(min,max, by=binSize), right=FALSE)
 
 #cut frequencies
 c4<-summary(c3)
